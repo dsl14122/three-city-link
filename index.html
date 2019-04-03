@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="mine-content">
+        <div class="col-xs-3 mine-word padding-right-0">
+             <label>所在地区:</label>
+        </div>
+        <div class="col-xs-3 padding-left-0 ">
+              <select id="seachprov" class="form-control" name="seachprov" onkeyup="showAreaID();" onChange="changeComplexProvince(this.value, sub_array, 'seachcity', 'seachdistrict');"></select>
+             <select id="seachcity" class="form-control" name="homecity" onChange="changeCity(this.value,'seachdistrict','seachdistrict');"></select>
+             <span id="seachdistrict_div"> <select class="form-control" id="seachdistrict" name="seachdistrict" onblur="showAreaID();"></select></span>
+        </div>
+   </div>
+   
+   <input type="hidden" id="xixi">
+    <!-- //此隐藏域为了拼装-已选择的三级地址，便于提交 -->
+</body>
+<script src="./jquery-1.12.4.min.js"></script>
+<script src="./Area.js"></script>
+<script src="./AreaData_min.js"></script>
+
+</html>
+
+<script type="text/javascript">
+    　　$('.mine-button').click(function () { //提交表单
+            var seachcity=document.getElementById('seachcity').value;
+            var seachdistrict=document.getElementById('seachdistrict').value;
+            console.log(seachdistrict)
+            if (seachdistrict==0) {
+                var seachValue=getAreaNamebyID(seachcity);
+                 $('#xixi').val(seachValue);
+                 console.log(seachValue)                
+             } else {
+                 var seachValue=getAreaNamebyID(seachdistrict);
+                 $('#xixi').val(seachValue);
+                 console.log(seachValue);
+             }
+        })
+    </script>
